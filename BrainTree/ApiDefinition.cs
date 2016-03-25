@@ -345,6 +345,7 @@ namespace BrainTree
 	{
 		// -(instancetype _Nonnull)initWithValue:(id _Nonnull)value;
 		[Export ("initWithValue:")]
+		//[DesignatedInitializer]
 		IntPtr Constructor (NSObject value);
 
 		// -(instancetype _Nonnull)initWithData:(NSData * _Nonnull)data;
@@ -453,7 +454,6 @@ namespace BrainTree
 	{
 		// -(instancetype _Nonnull)initWithJSON:(BTJSON * _Nonnull)json __attribute__((objc_designated_initializer));
 		[Export ("initWithJSON:")]
-		[DesignatedInitializer]
 		IntPtr Constructor (BTJSON json);
 
 		// @property (readonly, nonatomic, strong) BTJSON * _Nonnull json;
@@ -478,6 +478,7 @@ namespace BrainTree
 	{
 		// -(instancetype _Nullable)initWithAuthorization:(NSString * _Nonnull)authorization;
 		[Export ("initWithAuthorization:")]
+		[DesignatedInitializer]
 		IntPtr Constructor (string authorization);
 
 		// -(instancetype _Nonnull)copyWithSource:(BTClientMetadataSourceType)source integration:(BTClientMetadataIntegrationType)integration;
@@ -630,6 +631,10 @@ namespace BrainTree
 		// @property (readonly, copy, nonatomic) NSString * _Nonnull originalValue;
 		[Export ("originalValue")]
 		string OriginalValue { get; }
+
+		[Export ("decodeClientToken:error:")]
+		IntPtr DecodeClientToken(string clientToken, [NullAllowed] out NSError error);
+
 
 		// -(instancetype _Nullable)initWithClientToken:(NSString * _Nonnull)clientToken error:(NSError * _Nullable * _Nullable)error __attribute__((objc_designated_initializer));
 		[Export ("initWithClientToken:error:")]
